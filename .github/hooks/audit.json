@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "bash": "python3 .agents/hooks/audit_log.py pre copilot || python .agents/hooks/audit_log.py pre copilot",
+        "powershell": "python .agents/hooks/audit_log.py pre copilot",
+        "timeoutSec": 10
+      }
+    ],
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "python3 .agents/hooks/audit_log.py post copilot || python .agents/hooks/audit_log.py post copilot",
+        "powershell": "python .agents/hooks/audit_log.py post copilot",
+        "timeoutSec": 10
+      }
+    ]
+  }
+}

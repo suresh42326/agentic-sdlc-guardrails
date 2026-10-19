@@ -1,0 +1,21 @@
+{
+  // Copilot agent-mode guardrails. Mirrors the deny list in .claude/settings.json.
+  // false = never auto-approve. The baseline rules forbid these actions anyway.
+  "chat.tools.terminal.autoApprove": {
+    "/^git push (-f|--force)/": false,
+    "/^git push origin main/": false,
+    "/^git reset --hard/": false,
+    "/^rm -rf/": false,
+    "/^(az|aws|gcloud|kubectl|psql|tofu|terraform) /": false,
+    "/^gh pr (merge|review)/": false,
+    "/^(curl|wget) /": false,
+    "/^(pip install|npm install -g)/": false,
+    "git status": true,
+    "git diff": true,
+    "git log": true,
+    "uv run pytest": true,
+    "pnpm test": true
+  },
+  "chat.useAgentsMdFile": true,
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true
+}

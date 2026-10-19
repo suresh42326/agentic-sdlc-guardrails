@@ -1,0 +1,74 @@
+# MCP server allow-list
+#
+# Agents may connect only to servers listed under `servers`, and only in the
+# environments named on each entry. `examples` is documentation. Copy an
+# example into `servers` only after a human has reviewed the tool list,
+# pinned a version, and recorded the review.
+#
+# Rules:
+# - Pin versions. Changing `version` is a reviewed pull request.
+# - Re-scan when tool descriptions change. Store the hash you approved.
+# - List every tool the agent may call. Mark servers that can write.
+# - Review the list on a schedule you choose (a date in `review_date`).
+# - Environments: local (interactive or delegated work), ci (unattended).
+#   Production is never an environment here.
+
+schema_version: 1
+
+# TODO: move a reviewed server here. Delete this comment when the list is real.
+# Pattern:
+#
+# servers:
+#   - name: <short-name>
+#     purpose: <one sentence>
+#     source: <package or URL you reviewed>
+#     version: "<exact version>"
+#     transport: stdio
+#     environments: [local]
+#     modes: [Pair, Delegated]
+#     network_egress: ["<host the server may reach>"]
+#     tools_allowed: [<tool names>]
+#     write_capable: false
+#     data_classification_max: Internal
+#     approved_by: <github handle>
+#     approved_on: <YYYY-MM-DD>
+#     review_date: <YYYY-MM-DD>
+#     scan:
+#       tool: <scanner name>
+#       last_run: <YYYY-MM-DD>
+#       description_hash: "<sha256 of the tool descriptions you approved>"
+servers: []
+
+examples:
+  # EXAMPLE ONLY. Not approved. Do not enable this server as written.
+  - name: example-docs
+    status: example-not-approved
+    purpose: >
+      Look up public library documentation. Queries must not include
+      source code, tickets, or any private data.
+    source: "TODO: package or URL of the docs server you have reviewed"
+    version: "TODO: pin the exact version you scanned"
+    transport: stdio
+    environments: [local, ci]
+    modes: [Pair, Delegated, Unattended]
+    network_egress:
+      - "TODO: hostname of the docs service"
+    tools_allowed:
+      - resolve-library-id
+      - query-docs
+    write_capable: false
+    data_classification_max: Public
+    approved_by: "TODO: github handle of the reviewer"
+    approved_on: "TODO: YYYY-MM-DD"
+    review_date: "TODO: YYYY-MM-DD"
+    scan:
+      tool: "TODO: scanner name"
+      last_run: "TODO: YYYY-MM-DD"
+      description_hash: "TODO: sha256 of tool descriptions at approval time"
+
+# Categories that stay off the list:
+prohibited:
+  - Servers that hold production database or production cloud credentials
+  - Servers that run an arbitrary shell on the host outside the sandbox
+  - Unpinned "latest" versions, or servers fetched at runtime from a source nobody reviewed
+  - Servers whose tool descriptions change without a version change

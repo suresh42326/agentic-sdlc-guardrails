@@ -1,0 +1,13 @@
+{
+  "bundle": "local",
+  "version": "1.0.0",
+  "note": "Skills, hooks, and reviewer prompts ship in this repository. There is no external bundle.",
+  "files": [
+    ".agents/org/org-rules.md",
+    ".agents/mcp-allowlist.yml",
+    ".agents/hooks/audit_log.py",
+    ".github/hooks/audit.json",
+    ".github/agents/code-reviewer.agent.md",
+    ".github/agents/security-reviewer.agent.md"
+  ]
+}

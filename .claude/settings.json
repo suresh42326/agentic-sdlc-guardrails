@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git switch:*)",
+      "Bash(git worktree:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm vitest:*)",
+      "Bash(pnpm generate:api-client:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv run:*)",
+      "Bash(pre-commit run:*)",
+      "Bash(sh scripts/sync-skills.sh)",
+      "Bash(sh scripts/doctor.sh)",
+      "Bash(python3 -m unittest discover -s tests -v)",
+      "Bash(pnpm test:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(pnpm add:*)",
+      "Bash(uv add:*)",
+      "Bash(docker:*)",
+      "WebFetch",
+      "Edit(./backend/migrations/**)",
+      "Edit(./backend/app/features/auth/**)",
+      "Edit(./infra/**)",
+      "Edit(./docs/adr/**)",
+      "Edit(./docs/constitution.md)"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push origin main:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git branch -D:*)",
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(pip install:*)",
+      "Bash(npm install -g:*)",
+      "Bash(tofu apply:*)",
+      "Bash(terraform apply:*)",
+      "Bash(az:*)",
+      "Bash(aws:*)",
+      "Bash(gcloud:*)",
+      "Bash(kubectl:*)",
+      "Bash(psql:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(gh pr review:*)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./**/secrets/**)",
+      "Read(./**/*.pem)",
+      "Read(./**/*.key)",
+      "Edit(./.github/workflows/**)",
+      "Edit(./.agents/**)",
+      "Edit(./.claude/settings.json)",
+      "Edit(./CODEOWNERS)",
+      "Edit(./.github/CODEOWNERS)",
+      "Edit(./.github/hooks/**)",
+      "Edit(./.github/copilot-instructions.md)",
+      "Edit(./.vscode/settings.json)",
+      "Edit(./.claude/skills/**)",
+      "Edit(./.github/agents/**)",
+      "Edit(./skills-lock.json)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.agents/hooks/audit_log.py pre claude || python \"$CLAUDE_PROJECT_DIR\"/.agents/hooks/audit_log.py pre claude",
+            "timeout": 10,
+            "statusMessage": "Writing audit log"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR\"/.agents/hooks/audit_log.py post claude || python \"$CLAUDE_PROJECT_DIR\"/.agents/hooks/audit_log.py post claude",
+            "timeout": 10,
+            "statusMessage": "Writing audit log"
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "AGENT_MODE": "M1"
+  },
+  "includeCoAuthoredBy": false
+}

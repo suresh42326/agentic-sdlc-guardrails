@@ -1,0 +1,9 @@
+# Guardrail files need a review from the repository owner.
+# Turn on branch protection for these paths.
+/.agents/                 @suresh42326
+/.claude/                 @suresh42326
+/.github/                 @suresh42326
+/.vscode/settings.json    @suresh42326
+/CODEOWNERS               @suresh42326
+/skills-lock.json         @suresh42326
+/docs/constitution.md     @suresh42326

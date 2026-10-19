@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "acceptance-tdd": {
+      "source": "local",
+      "sourceType": "path",
+      "skillPath": ".agents/skills/acceptance-tdd/SKILL.md",
+      "computedHash": "b6d9e6a9ab9dde511c85f60a8e5ef3761a3106e446c74f96bb941d77a1c1730b"
+    },
+    "grill": {
+      "source": "local",
+      "sourceType": "path",
+      "skillPath": ".agents/skills/grill/SKILL.md",
+      "computedHash": "7359dca9d001ebc3d94ded6cca676f4214ead27de389a2d9fd81973be4e7b3ba"
+    },
+    "migration-writer": {
+      "source": "local",
+      "sourceType": "path",
+      "skillPath": ".agents/skills/migration-writer/SKILL.md",
+      "computedHash": "9fb66160828c65ced5f5b796bab37fc4fcbec47742756532492b82c3a027d7ca"
+    },
+    "spec-draft": {
+      "source": "local",
+      "sourceType": "path",
+      "skillPath": ".agents/skills/spec-draft/SKILL.md",
+      "computedHash": "9155b3268cd7cf030627036d1c2c027eb0b21df0a412b2612749a0f984d6982b"
+    },
+    "test-generator": {
+      "source": "local",
+      "sourceType": "path",
+      "skillPath": ".agents/skills/test-generator/SKILL.md",
+      "computedHash": "ba7c7325f42eb9cbf48bd96c6e27fd8ea9ad3af322a1d400eb51a4bd75e22ca0"
+    }
+  }
+}
